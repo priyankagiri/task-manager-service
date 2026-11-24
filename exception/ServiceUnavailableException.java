@@ -1,8 +1,8 @@
-package assignment_task_manager.scaffold.exception;
+package exception;
 
-/** INSTRUCTOR-PROVIDED SKELETON (Step 3). 503 / SERVICE_UNAVAILABLE, e.g. LLM_API_KEY is not set. */
 public class ServiceUnavailableException extends ApiException {
 
+    private static final long serialVersionUID = 1L;
     public ServiceUnavailableException(String message) {
         super(503, "SERVICE_UNAVAILABLE", message);
     }

@@ -1,21 +1,16 @@
-package assignment_task_manager.scaffold.app;
+package app;
 
-import assignment_task_manager.scaffold.parser.SimpleJson;
-import assignment_task_manager.scaffold.service.DateHelper;
+import parser.SimpleJson;
+import service.DateHelper;
 
 import java.util.Map;
 
-/**
- * INSTRUCTOR WALKTHROUGH (Step 4) - runs offline, no key needed.
- * Shows the three ideas of the AI step in ~10 minutes:
- *   1. read the API key from an environment variable (and never print it)
- *   2. prompt for structured JSON, with today's date inside the prompt
- *   3. NEVER TRUST THE MODEL - parse and validate before anything is saved
- */
+
 public class PromptAndEnvWalkthrough {
 
     public static void main(String[] args) {
-        // 1. API key from the environment. Set it in IntelliJ: Run > Edit Configurations > Environment variables.
+        // 1. API key from the environment. Set it in IntelliJ: Run > Edit
+        // Configurations > Environment variables.
         String key = System.getenv("LLM_API_KEY");
         if (key == null || key.isBlank()) {
             System.out.println("1. LLM_API_KEY missing -> TaskApi must return 503 in the error shape (not crash)");
@@ -41,7 +36,8 @@ public class PromptAndEnvWalkthrough {
                 "{\"title\":\"Pay rent\",\"description\":\"Monthly rent\",\"dueDate\":\"2026-12-01\",\"recurrence\":\"monthly\"}");
         tryReply("fenced reply (parser tolerates it)",
                 "```json\n{\"title\":\"Pay rent\",\"description\":\"Monthly rent\",\"dueDate\":null,\"recurrence\":null}\n```");
-        tryReply("impossible date", "{\"title\":\"Pay rent\",\"description\":\"x\",\"dueDate\":\"2026-02-30\",\"recurrence\":null}");
+        tryReply("impossible date",
+                "{\"title\":\"Pay rent\",\"description\":\"x\",\"dueDate\":\"2026-02-30\",\"recurrence\":null}");
         tryReply("empty title", "{\"title\":\"  \",\"description\":\"x\",\"dueDate\":null,\"recurrence\":null}");
         tryReply("not JSON at all", "Sure! Here is your task: pay rent on the 1st.");
     }

@@ -1,16 +1,8 @@
-package assignment_task_manager.scaffold.service;
+package service;
 
 import java.time.LocalDate;
 
-/**
- * INSTRUCTOR-PROVIDED (Step 3, optional - learners may write their own).
- *
- * Date handling was not covered in class, so this is supplied. It checks the month and
- * day by hand (including leap years) instead of leaning on a library, so students can
- * read and understand every line.
- *
- * When you copy this into your own project, change the package line to: package service;
- */
+
 public final class DateHelper {
 
     private DateHelper() {
@@ -65,7 +57,7 @@ public final class DateHelper {
     private static boolean allDigits(String s) {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c < '0' || c > '9') {   // plain 0-9 only (Character.isDigit also accepts other alphabets)
+            if (c < '0' || c > '9') { // plain 0-9 only (Character.isDigit also accepts other alphabets)
                 return false;
             }
         }

@@ -1,4 +1,4 @@
-package assignment_task_manager.scaffold.api;
+package api;
 
 import java.util.Map;
 

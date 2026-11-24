@@ -1,10 +1,6 @@
-package assignment_task_manager.scaffold.exception;
+package exception;
 
-/**
- * INSTRUCTOR-PROVIDED SKELETON (Step 3).
- * One problem with one field, e.g. new FieldIssue("title", "must not be empty").
- * Becomes one entry of "details" in the error shape.
- */
+
 public class FieldIssue {
 
     private final String field;

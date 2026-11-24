@@ -1,27 +1,9 @@
-package assignment_task_manager.scaffold.parser;
+package parser;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * INSTRUCTOR-PROVIDED (Steps 4, 5). Reading JSON was not covered in class.
- *
- * parseFlat(text)  - reads ONE flat JSON object into a Map<String, String>.
- *     {"title":"Pay rent","dueDate":null,"count":3}
- *       -> title=Pay rent, dueDate=null (a Java null), count=3 (as text)
- *     * Everything comes back as a String - validate/convert it yourself ("never trust the model").
- *     * Tolerates ```json code fences, which models often add even when told not to.
- *     * Nested objects/arrays are returned as their raw text.
- *     * Throws IllegalArgumentException if the text is not a JSON object -> catch it and
- *       turn it into a 502 (the model produced garbage).
- *
- * firstStringValue(json, key) - finds the first "key":"..." anywhere (even nested).
- *     Used by HttpLlmClient to pull the reply text out of a provider's response.
- *
- * quote(s) - wraps s in quotes and escapes it, for building request JSON.
- *
- * When you copy this into your own project, change the package line to: package parser;
- */
+
 public final class SimpleJson {
 
     private SimpleJson() {
@@ -91,8 +73,10 @@ public final class SimpleJson {
                 case '\r' -> sb.append("\\r");
                 case '\t' -> sb.append("\\t");
                 default -> {
-                    if (c < 0x20) sb.append(String.format("\\u%04x", (int) c));
-                    else sb.append(c);
+                    if (c < 0x20)
+                        sb.append(String.format("\\u%04x", (int) c));
+                    else
+                        sb.append(c);
                 }
             }
         }
@@ -141,7 +125,10 @@ public final class SimpleJson {
             pos++;
         }
 
-        /** Positioned on an opening quote; returns the unescaped text and moves past the closing quote. */
+        /**
+         * Positioned on an opening quote; returns the unescaped text and moves past the
+         * closing quote.
+         */
         String readString() {
             expect('"');
             StringBuilder sb = new StringBuilder();
@@ -179,7 +166,10 @@ public final class SimpleJson {
             }
         }
 
-        /** A string, a nested {...}/[...] (raw text), or a bare token such as 3, true, null. */
+        /**
+         * A string, a nested {...}/[...] (raw text), or a bare token such as 3, true,
+         * null.
+         */
         String readValue() {
             char c = peek();
             if (c == '"') {
